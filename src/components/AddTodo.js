@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import styled from 'styled-components/macro'
 
 export default function AddTodo() {
   const [title, setTitle] = React.useState("");
@@ -15,19 +16,34 @@ export default function AddTodo() {
       setTitle("");
     }
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="input_container">
-        <input
+  return (<center>
+    <Start><form onSubmit={handleSubmit}>
+    <center><div className="input_container">
+        <Input
+          id="new-todo"
           type="text"
-          placeholder="Enter todo..."
+          placeholder="Type challenge here...🖊️"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
+          className="form-control mb-2 mr-sm-2"
+          onChange={(e) => setTitle(e.target.value)} />
+      </div></center>
       <div className="btn_container">
-        <button>Add</button>
+        <button class="btn btn-primary">Add new challenge</button>
       </div>
-    </form>
+    </form></Start></center>
   );
 }
+
+const Input = styled.input`
+height: 100px;
+
+text-align:center;
+@media (max-width: 667px) {max-width:80vw;}
+@media (min-width: 1024px) {max-width:30vw;}
+`
+
+const Start = styled.div`
+display:flex;
+flex-direction: column;
+padding-bottom:20px;
+`

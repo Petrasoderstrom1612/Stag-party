@@ -1,9 +1,11 @@
 
 import "./App.css";
 import React from "react";
-import Title from "./components/Title";
 import AddTodo from "./components/AddTodo";
 import Todo from "./components/Todo";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import styled from 'styled-components/macro'
+
 import {
   collection,
   query,
@@ -39,14 +41,9 @@ function App() {
     await deleteDoc(doc(db, "todos", id));
   };
   return (
-    <div className="App">
-      <div>
-        <Title />
-      </div>
-      <div>
+    <OuterWrapper><center>
+       <Headline>Honza&apos;s challenges💍</Headline></center>
         <AddTodo />
-      </div>
-      <div className="todo_container">
         {todos.map((todo) => (
           <Todo
             key={todo.id}
@@ -56,8 +53,32 @@ function App() {
             handleEdit={handleEdit}
           />
         ))}
-      </div>
-    </div>
+    </OuterWrapper>
   );
 }
 export default App;
+
+const Headline = styled.h2`
+padding:15px;
+`
+
+const OuterWrapper = styled.div`
+position: relative;
+  min-width: 96vw;
+  width: 96%;
+  min-height: 94vh;
+  margin-left: 2%;
+  margin-top: 3vh;
+
+  @media (min-width: 667px) {
+  min-width: 90vw;
+  width: 90%;
+  margin-left:5%;
+}
+
+@media (min-width: 1024px) {
+  min-width: 80vw;
+  width: 80%;
+  margin-left:10%;
+}
+`
