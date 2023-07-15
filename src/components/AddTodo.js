@@ -9,41 +9,31 @@ export default function AddTodo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title !== "") {
-      await addDoc(collection(db, "todos"), {
+      await addDoc(collection(db, "todos"), {id: Date.now().toString(),
         title,
         completed: false,
       });
       setTitle("");
+      console.log(collection(db, "todos"))
     }
   };
-  return (<center>
-    <Start><form onSubmit={handleSubmit}>
-    <center><div className="input_container">
-        <Input
+  return (
+    <><form onSubmit={handleSubmit}>
+        <input
           id="new-todo"
           type="text"
           placeholder="Type challenge here...🖊️"
           value={title}
           className="form-control mb-2 mr-sm-2"
           onChange={(e) => setTitle(e.target.value)} />
-      </div></center>
-      <div className="btn_container">
-        <button class="btn btn-primary">Add new challenge</button>
-      </div>
-    </form></Start></center>
+        <AddTodoButtonStyled className="btn btn-primary mb-2" >Add new challenge</AddTodoButtonStyled>
+    </form></>
   );
 }
 
-const Input = styled.input`
-height: 100px;
-
-text-align:center;
-@media (max-width: 667px) {max-width:80vw;}
-@media (min-width: 1024px) {max-width:30vw;}
+const AddTodoButtonStyled = styled.button`
+right:0;
+margin-bottom:17px !important;
 `
 
-const Start = styled.div`
-display:flex;
-flex-direction: column;
-padding-bottom:20px;
-`
+

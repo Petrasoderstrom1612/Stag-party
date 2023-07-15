@@ -1,7 +1,4 @@
 import React from "react";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import styled from 'styled-components/macro'
 
 export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,}) {
@@ -18,43 +15,26 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,})
   };
   return (
     <EachTaskStyler>
-      <center><Input
-        style={{ textDecoration: todo.completed && "line-through" ,}}
-        type="text"
-        value={todo.title === "" ? newTitle : todo.title}
-        className="form-control mb-2 mr-sm-2"
-        onChange={handleChange}
-      /></center>
-      <div>
-        <center>
-        <AddTodoButtonStyled className="btn btn-success"
+        <Toggle
           onClick={() => toggleComplete(todo)}
-        >
-          <CheckCircleIcon id="i" />
-        </AddTodoButtonStyled>
-        <button
-          class="btn btn-warning"
-          onClick={() => handleEdit(todo, newTitle)}
-        >
-          <EditIcon id="i" />
-        </button>
-        <button className="btn btn-danger" onClick={() => handleDelete(todo.id)}>
-          <DeleteIcon id="i" />
-        </button>
-        </center>
-      </div>
+        > 
+         </Toggle> 
+    <input key={todo.id}
+        type="checkbox"
+        id="checkbox"
+        checked={todo.completed}
+        className="strikethrough"
+        value={todo.title === "" ? newTitle : todo.title}
+        onChange={handleChange}
+      />
+      <label className="strikethrough" id="strikethrough">{todo.title}
+            </label>
+        <RemoveButtonStyled type="button" className="btn btn-warning" onClick={() => handleDelete(todo.id)}>Remove</RemoveButtonStyled> 
     </EachTaskStyler>
   );
 }
 
-const Input = styled.textarea`
-border: none;
-outline: none;
-text-align:center !important;
-padding-bottom:3px;
-width:80%;
-height: auto;
-`
+
 
 const EachTaskStyler = styled.div`
 margin-bottom: 6%;
@@ -68,8 +48,18 @@ margin-bottom: 2.5%;
 }
 `
 
-const AddTodoButtonStyled = styled.button`
-right:0;
+const Toggle = styled.button`
+position: absolute;
+  opacity:0;
+  left:0;
+  width: 30px;
+  height: 30px;
+  /* margin-left: -20px; */
+  z-index: 2;
+`
+const RemoveButtonStyled = styled.button`
+  position: absolute;
+  right:0.5vw;
 `
 
 

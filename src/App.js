@@ -41,8 +41,8 @@ function App() {
     await deleteDoc(doc(db, "todos", id));
   };
   return (
-    <OuterWrapper><center>
-       <Headline>Honza&apos;s challenges💍</Headline></center>
+    <OuterWrapper>
+       <Headline>Honza&apos;s challenges💍</Headline>
         <AddTodo />
         {todos.map((todo) => (
           <Todo
@@ -59,7 +59,7 @@ function App() {
 export default App;
 
 const Headline = styled.h2`
-padding:15px;
+padding-left:3px;
 `
 
 const OuterWrapper = styled.div`
