@@ -26,7 +26,10 @@ function App() {
       querySnapshot.forEach((doc) => {
         todosArray.push({ ...doc.data(), id: doc.id });
       });
+      // Sort the todosArray based on the timestamp in chronological order
+      todosArray.sort((a, b) => b.timestamp - a.timestamp);
       setTodos(todosArray);
+      console.log(todosArray)
     });
     return () => unsub();
   }, []);
@@ -40,19 +43,20 @@ function App() {
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "todos", id));
   };
+
   return (
     <OuterWrapper>
-       <Headline>Honza&apos;s challenges💍</Headline>
-        <AddTodo />
-        {todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            toggleComplete={toggleComplete}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
-        ))}
+      <Headline>Honza&apos;s challenges💍</Headline>
+      <AddTodo />
+      {todos.map((todo) => (
+        <Todo
+          key={todo.id}
+          todo={todo}
+          toggleComplete={toggleComplete}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
+      ))}
     </OuterWrapper>
   );
 }

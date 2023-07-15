@@ -9,7 +9,7 @@ export default function AddTodo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title !== "") {
-      await addDoc(collection(db, "todos"), {id: Date.now().toString(),
+      await addDoc(collection(db, "todos"), {timestamp: Date.now().toString(),
         title,
         completed: false,
       });
