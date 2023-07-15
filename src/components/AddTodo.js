@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
 export default function AddTodo() {
   const [title, setTitle] = React.useState("");

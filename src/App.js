@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 import AddTodo from "./components/AddTodo";
 import Todo from "./components/Todo";
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
